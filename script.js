@@ -5,7 +5,7 @@ const nextButton = document.getElementById('nextButton');
 const volumeButton = document.getElementById('volumeButton');
 const volumeMenu = document.getElementById('volumeMenu');
 const volumeControl = document.getElementById('volumeControl');
-const songImage = document.getElementById('songImage');
+const songImage = document.getElementById('songImage'); // 新增
 
 let isPlaying = false;
 let currentSongIndex = 0;
@@ -22,6 +22,7 @@ const songs = [
     '10.mp3'
 ];
 
+// 定义不同歌曲对应的背景颜色
 const backgroundColors = [
     '#ffffff',
     '#58dde4',
@@ -35,6 +36,7 @@ const backgroundColors = [
     '#ff170a'
 ];
 
+// 定义不同歌曲对应的图片
 const songImages = [
     '1.gif',
     '2.gif',
@@ -48,27 +50,7 @@ const songImages = [
     '10.gif'
 ];
 
-const buttonColors = [
-    '#ffffff',
-    '#58dde4',
-    '#f5f1f1',
-    '#ffab1c',
-    '#f7cb98',
-    '#030003',
-    '#242155',
-    '#eebc84',
-    '#faf6fa',
-    '#ff170a'
-];
-
-function changeButtonColor() {
-    playPauseButton.style.backgroundColor = buttonColors[currentSongIndex];
-    prevButton.style.backgroundColor = buttonColors[currentSongIndex];
-    nextButton.style.backgroundColor = buttonColors[currentSongIndex];
-    volumeButton.style.backgroundColor = buttonColors[currentSongIndex];
-}
-
-function playPause() {
+playPauseButton.addEventListener('click', () => {
     if (isPlaying) {
         musicPlayer.pause();
         playPauseButton.innerHTML = '<img src="paused.png" alt="播放">';
@@ -77,22 +59,16 @@ function playPause() {
         playPauseButton.innerHTML = '<img src="play.png" alt="暂停">';
     }
     isPlaying = !isPlaying;
-}
-
-playPauseButton.addEventListener('click', () => {
-    playPause();
 });
 
 prevButton.addEventListener('click', () => {
     currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
     updateAudioSource();
-    changeButtonColor();
 });
 
 nextButton.addEventListener('click', () => {
     currentSongIndex = (currentSongIndex + 1) % songs.length;
     updateAudioSource();
-    changeButtonColor();
 });
 
 musicPlayer.addEventListener('timeupdate', () => {
@@ -100,15 +76,18 @@ musicPlayer.addEventListener('timeupdate', () => {
     const duration = musicPlayer.duration;
     const percentage = (currentTime / duration) * 100;
     seekBar.value = percentage;
-    changeButtonColor();
 });
 
 musicPlayer.addEventListener('ended', () => {
+    // 自动播放下一曲
     currentSongIndex = (currentSongIndex + 1) % songs.length;
     updateAudioSource();
+
+    // 更改背景颜色
     document.body.style.backgroundColor = backgroundColors[currentSongIndex];
+
+    // 更改图片
     songImage.src = `image/${songImages[currentSongIndex]}`;
-    changeButtonColor();
 });
 
 volumeButton.addEventListener('click', () => {
@@ -130,9 +109,13 @@ function updateAudioSource() {
     musicPlayer.play();
     playPauseButton.innerHTML = '<img src="play.png" alt="暂停">';
     isPlaying = true;
+
+    // 更改背景颜色
     document.body.style.backgroundColor = backgroundColors[currentSongIndex];
+
+    // 更改图片
     songImage.src = `image/${songImages[currentSongIndex]}`;
 }
 
+// 初始化播放第一首歌曲
 updateAudioSource();
-changeButtonColor();
