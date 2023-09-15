@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>MikuMikuPlayer</title>
+    <link rel="stylesheet" href="materialize\css\materialize.css">
+    <script src="materialize\js\materialize.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+  <img id="songImage" src="image/1.gif" alt="歌曲图片">
+
+  <!-- 音乐播放器 -->
+  <audio id="musicPlayer" controls autoplay>
+      <source src="music/1.mp3" type="audio/mpeg">
+  </audio>
+
+
+     <!-- Materialize CSS 的进度条 -->
+     <div class="progress">
+         <div class="determinate" id="progressBar" style="width: 0%;"></div>
+     </div>
+  <!-- 按钮容器，横排排列按钮 -->
+  <div class="button-container">
+    <!-- 上一曲按钮 -->
+    <!-- 使用 "btn-small" 类来设置按钮为小尺寸 -->
+    <a id="prevButton" class="btn-floating btn-small waves-effect"><img src="back.png" alt="上一曲"></a>
+
+    <!-- 播放/暂停按钮 -->
+    <!-- 使用 "btn-small" 类来设置按钮为小尺寸 -->
+    <a id="playPauseButton" class="btn-floating btn-small waves-effect"><img src="paused.png" alt="播放"></a>
+
+    <!-- 下一曲按钮 -->
+    <!-- 使用 "btn-small" 类来设置按钮为小尺寸 -->
+    <a id="nextButton" class="btn-floating btn-small waves-effect"><img src="next.png" alt="下一曲"></a>
+
+    <!-- 音量控制按钮 -->
+    <!-- 使用 "btn-small" 类来设置按钮为小尺寸 -->
+    <a id="volumeButton" class="btn-floating btn-small waves-effect"><img src="volume.png" alt="音量"></a>
+
+    <!-- 音量控制二级菜单 -->
+    <div class="volume-menu" id="volumeMenu">
+      <input type="range" id="volumeControl" value="100" min="0" max="100" step="1">
+    </div>
+  </div>
+
+
+  <!-- 显示歌曲图片 -->
+
+  <script src="script.js"></script>
+</body>
+</html>

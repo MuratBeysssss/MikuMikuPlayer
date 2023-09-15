@@ -1,0 +1,47 @@
+/* 居中播放器 */
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* 样式音量控制 */
+.volume-menu {
+    display: none;
+    position: absolute;
+    right: 10px;
+    top: 50px;
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+/* 按钮容器，横排排列按钮 */
+.button-container {
+    display: flex;
+    align-items: center;
+}
+
+/* 图标按钮样式 */
+button {
+    background: none; /* 移除背景色 */
+    border: none; /* 移除边框 */
+    padding: 0; /* 移除内边距 */
+    cursor: pointer; /* 鼠标指针样式 */
+    margin-right: 10px; /* 添加按钮之间的间距 */
+}
+
+/* 图标按钮样式 */
+button img {
+    width: 32px; /* 调整图标的大小 */
+    height: 32px;
+}
+
+/* 显示音量控制菜单 */
+#volumeButton:focus + #volumeMenu {
+    display: block;
+}
